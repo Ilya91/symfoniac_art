@@ -15,8 +15,8 @@ class PageController extends Controller
 	{
 		$number = mt_rand(0, 100);
 
-		return new Response(
-			'<html><body>Lucky number: '.$number.'</body></html>'
-		);
+		return $this->render('default/index.html.twig', [
+			'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+		]);
 	}
 }
