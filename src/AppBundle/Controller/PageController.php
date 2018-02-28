@@ -15,7 +15,7 @@ class PageController extends Controller
 	{
 		$number = mt_rand(0, 100);
 
-		return $this->render('default/index.html.twig', [
+		return $this->render('page/index.html.twig', [
 			'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
 		]);
 	}
