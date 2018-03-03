@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="container">
     <h1>Post</h1>
 
-    <table>
+    <table class="table table-bordered">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -45,4 +46,5 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+</div>
 {% endblock %}
