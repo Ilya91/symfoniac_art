@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -24,10 +25,13 @@ class DefaultController extends Controller
     }
 
 	/**
-	 * @Route("/admin")
+	 * @Route("/admin", name="admin")
 	 */
 	public function adminAction()
 	{
+		if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+			throw $this->createAccessDeniedException();
+		}
 		return new Response('<html><body>Admin page!</body></html>');
 	}
 }

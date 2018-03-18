@@ -39,6 +39,10 @@ services:
     BlogBundle\DataFixtures\:
             resource: '../../src/BlogBundle/DataFixtures'
             tags: ['doctrine.fixture.orm']
+
+    UserBundle\DataFixtures\:
+                resource: '../../src/UserBundle/DataFixtures'
+                tags: ['doctrine.fixture.orm']
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:
