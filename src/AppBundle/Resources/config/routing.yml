@@ -1,0 +1,7 @@
+sequrity_annotations:
+    resource: "@AppBundle/Controller"
+    type:   annotation
+
+login_page:
+    path:     /
+    defaults: { _controller: AppBundle:Security:login }

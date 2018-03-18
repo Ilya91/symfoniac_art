@@ -164,9 +164,9 @@ class Post
     }
 
     /**
-     * Set apdatedAt
+     * Set updatedAt
      *
-     * @param \DateTime $apdatedAt
+     * @param \DateTime $updatedAt
      *
      * @return Post
      */

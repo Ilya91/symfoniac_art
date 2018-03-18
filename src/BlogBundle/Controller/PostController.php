@@ -5,6 +5,8 @@ namespace BlogBundle\Controller;
 use BlogBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * Post controller.
@@ -14,7 +16,8 @@ class PostController extends Controller
 {
     /**
      * Lists all post entities.
-     *
+     * @Route("/posts", name="post_index")
+     * @Template("BlogBundle::post/index.html.twig", vars={"posts"})
      */
     public function indexAction()
     {
@@ -22,15 +25,18 @@ class PostController extends Controller
 
         $posts = $em->getRepository('BlogBundle:Post')->findAll();
 
-        return $this->render('BlogBundle::post/index.html.twig', array(
+        return [
             'posts' => $posts,
-        ));
+        ];
     }
 
-    /**
-     * Creates a new post entity.
-     *
-     */
+	/**
+	 * Creates a new post entity.
+	 *
+	 * @param Request $request
+	 *
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+	 */
     public function newAction(Request $request)
     {
         $post = new Post();
@@ -51,10 +57,13 @@ class PostController extends Controller
         ));
     }
 
-    /**
-     * Finds and displays a post entity.
-     *
-     */
+	/**
+	 * Finds and displays a post entity.
+	 *
+	 * @param Post $post
+	 *
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
     public function showAction(Post $post)
     {
         $deleteForm = $this->createDeleteForm($post);
@@ -65,10 +74,14 @@ class PostController extends Controller
         ));
     }
 
-    /**
-     * Displays a form to edit an existing post entity.
-     *
-     */
+	/**
+	 * Displays a form to edit an existing post entity.
+	 *
+	 * @param Request $request
+	 * @param Post $post
+	 *
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+	 */
     public function editAction(Request $request, Post $post)
     {
         $deleteForm = $this->createDeleteForm($post);
@@ -88,10 +101,14 @@ class PostController extends Controller
         ));
     }
 
-    /**
-     * Deletes a post entity.
-     *
-     */
+	/**
+	 * Deletes a post entity.
+	 *
+	 * @param Request $request
+	 * @param Post $post
+	 *
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
     public function deleteAction(Request $request, Post $post)
     {
         $form = $this->createDeleteForm($post);
@@ -115,10 +132,11 @@ class PostController extends Controller
      */
     private function createDeleteForm(Post $post)
     {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('post_delete', array('id' => $post->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
+	    /** @var TYPE_NAME $this */
+	    return $this->createFormBuilder()
+	                ->setAction($this->generateUrl('post_delete', array('id' => $post->getId())))
+	                ->setMethod('DELETE')
+	                ->getForm()
         ;
     }
 }

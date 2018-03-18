@@ -29,6 +29,16 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+
+    BlogBundle\Controller\:
+        resource: '../../src/BlogBundle/Controller'
+        public: true
+        tags: ['controller.service_arguments']
+
+
+    BlogBundle\DataFixtures\:
+            resource: '../../src/BlogBundle/DataFixtures'
+            tags: ['doctrine.fixture.orm']
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:
