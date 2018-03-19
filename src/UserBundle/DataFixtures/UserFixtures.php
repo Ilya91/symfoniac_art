@@ -13,9 +13,18 @@ class UserFixtures extends Fixture implements ContainerAwareInterface
 	public function load(ObjectManager $manager)
 	{
 		$user = new User();
-		$user->setUsername('admin');
-		$user->setPassword($this->encodePassword($user, 'admin'));
+		$user->setUsername('user');
+		$user->setPassword($this->encodePassword($user, 'user'));
+		$user->setEmail('user@user.com');
+		$user->setIsActive(false);
 		$manager->persist($user);
+
+		$admin = new User();
+		$admin->setUsername('admin');
+		$admin->setPassword($this->encodePassword($admin, 'admin'));
+		$user->setEmail('admin@admin.com');
+		$admin->setRoles(array('ROLE_ADMIN'));
+		$manager->persist($admin);
 		$manager->flush();
 	}
 

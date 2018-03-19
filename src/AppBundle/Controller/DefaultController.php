@@ -29,6 +29,9 @@ class DefaultController extends Controller
 	 */
 	public function adminAction()
 	{
+		$em = $this->getDoctrine()->getManager();
+		$userRepo = $em->getRepository('UserBundle:User');
+		var_dump($userRepo->findOneByUsernameOrEmail('user@user.com'));
 		if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
 			throw $this->createAccessDeniedException();
 		}
