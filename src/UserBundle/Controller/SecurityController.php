@@ -1,10 +1,11 @@
 <?php
-namespace AppBundle\Controller;
+namespace UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Security;
 
 class SecurityController extends Controller
 {
@@ -12,20 +13,19 @@ class SecurityController extends Controller
 	 * @Route("/login", name="login")
 	 * @param Request $request
 	 *
-	 * @param AuthenticationUtils $authenticationUtils
 	 *
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
-	public function loginAction(Request $request, AuthenticationUtils $authenticationUtils)
+	public function loginAction(Request $request)
 	{
-		// get the login error if there is one
-		$error = $authenticationUtils->getLastAuthenticationError();
+		$session = $request->getSession();
 
-		// last username entered by the user
-		$lastUsername = $authenticationUtils->getLastUsername();
+		// get the login error if there is one
+		$error = $session->get(Security::AUTHENTICATION_ERROR);
+		$session->remove(Security::AUTHENTICATION_ERROR);
 
 		return $this->render('AppBundle::security/login.html.twig', array(
-			'last_username' => $lastUsername,
+			'last_username' => $session->get(Security::LAST_USERNAME),
 			'error'         => $error,
 		));
 	}
