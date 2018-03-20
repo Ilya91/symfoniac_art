@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e56a872e-a7a6-43db-98e3-08d068d31ae9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="$PROJECT_DIR$/.idea/php.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -273,7 +272,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../modules/php/PHP-7.2-x64/php.exe" />
@@ -327,7 +326,7 @@
       <workItem from="1520177768447" duration="4943000" />
       <workItem from="1521564754010" duration="300000" />
       <workItem from="1521565180079" duration="790000" />
-      <workItem from="1521567210898" duration="566000" />
+      <workItem from="1521567210898" duration="722000" />
     </task>
     <task id="LOCAL-00001" summary="page controller">
       <created>1519726885532</created>
@@ -364,11 +363,18 @@
       <option name="project" value="LOCAL" />
       <updated>1521565469283</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="bundle blog">
+      <created>1521567818247</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1521567818248</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33099000" />
+    <option name="totallyTimeSpent" value="33255000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
