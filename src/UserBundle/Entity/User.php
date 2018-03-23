@@ -5,6 +5,8 @@ namespace UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Serializable;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * User
@@ -29,6 +31,12 @@ class User implements AdvancedUserInterface, Serializable
      * @ORM\Column(name="username", type="string", length=255)
      */
     private $username;
+
+	/**
+	 * @Assert\NotBlank()
+	 * @Assert\Length(max=4096)
+	 */
+	private $plainPassword;
 
     /**
      * @var string
@@ -293,5 +301,15 @@ class User implements AdvancedUserInterface, Serializable
 			$this->username,
 			$this->password,
 			) = unserialize($serialized);
+	}
+
+	public function getPlainPassword()
+	{
+		return $this->plainPassword;
+	}
+
+	public function setPlainPassword($password)
+	{
+		$this->plainPassword = $password;
 	}
 }
