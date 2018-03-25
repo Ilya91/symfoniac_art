@@ -3,29 +3,32 @@
 namespace UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RegisterFormType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder
-			->add('username', 'text')
-			->add('email', 'email', array(
+			->add('username', TextType::class)
+			->add('email', EmailType::class, array(
 				'label' => 'Email Address',
 				'attr'    => array('class' => 'C-3PO')
 			))
-			->add('plainPassword', 'repeated', array(
-				'type' => 'password',
-			))
-		;
+			->add('plainPassword', RepeatedType::class, array(
+				'type' => PasswordType::class,
+			));
 	}
 
-	public function setDefaultOptions(OptionsResolverInterface $resolver)
+	public function setDefaultOptions(OptionsResolver $resolver)
 	{
 		$resolver->setDefaults(array(
-			'data_class' => 'Yoda\UserBundle\Entity\User',
+			'data_class' => 'UserBundle\Entity\User',
 		));
 	}
 

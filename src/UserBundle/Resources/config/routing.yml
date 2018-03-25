@@ -5,3 +5,7 @@ sequrity_annotations:
 login_page:
     path:     /
     defaults: { _controller: UserBundle:Security:login }
+
+register_page:
+        path:     /
+        defaults: { _controller: UserBundle:Register:register }
