@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Security;
+use UserBundle\Form\LoginForm;
 
 class SecurityController extends Controller
 {
@@ -18,14 +19,24 @@ class SecurityController extends Controller
 	 */
 	public function loginAction(Request $request)
 	{
-		$session = $request->getSession();
+		/*$session = $request->getSession();
+		$error = $session->get(Security::AUTHENTICATION_ERROR);
+		$session->remove(Security::AUTHENTICATION_ERROR);*/
+
+		$authenticationUtils = $this->get('security.authentication_utils');
 
 		// get the login error if there is one
-		$error = $session->get(Security::AUTHENTICATION_ERROR);
-		$session->remove(Security::AUTHENTICATION_ERROR);
+		$error = $authenticationUtils->getLastAuthenticationError();
+
+		// last username entered by the user
+		$lastUsername = $authenticationUtils->getLastUsername();
+
+		$form = $this->createForm(LoginForm::class, [
+			'_username' => $lastUsername,
+		]);
 
 		return $this->render('AppBundle::security/login.html.twig', array(
-			'last_username' => $session->get(Security::LAST_USERNAME),
+			'form' => $form->createView(),
 			'error'         => $error,
 		));
 	}

@@ -4,6 +4,9 @@ parameters:
     #parameter_name: value
 
 services:
+    app.security.login_form_authenticator:
+            class: UserBundle\Security\LoginFormAuthenticator
+            autowire: true
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services
@@ -43,6 +46,12 @@ services:
     UserBundle\DataFixtures\:
                 resource: '../../src/UserBundle/DataFixtures'
                 tags: ['doctrine.fixture.orm']
+
+    #UserBundle\Security\:
+     #     resource: '../../src/UserBundle/Security'
+      #    tags: ['user.security.login_form_authenticator']
+
+
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:

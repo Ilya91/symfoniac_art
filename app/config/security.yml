@@ -19,9 +19,12 @@ security:
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            form_login:
-               login_path: login
-               check_path: login
+            #form_login:
+            #   login_path: login
+            #   check_path: login
+            guard:
+                authenticators:
+                    - app.security.login_form_authenticator
 
 #        secured_area:
             logout:
