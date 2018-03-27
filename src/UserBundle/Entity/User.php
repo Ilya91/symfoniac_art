@@ -170,7 +170,7 @@ class User implements AdvancedUserInterface, Serializable
 	 * the plain-text password is stored on this object.
 	 */
 	public function eraseCredentials() {
-		// TODO: Implement eraseCredentials() method.
+		$this->plainPassword = null;
 	}
 
 	/**
@@ -311,5 +311,6 @@ class User implements AdvancedUserInterface, Serializable
 	public function setPlainPassword($password)
 	{
 		$this->plainPassword = $password;
+		$this->password = null;
 	}
 }

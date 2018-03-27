@@ -22,8 +22,12 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator    {
 	private $router;
 	private $passwordEncoder;
 
-	public function __construct(FormFactoryInterface $formFactory, EntityManagerInterface $em, RouterInterface $router, UserPasswordEncoderInterface $passwordEncoder)
-	{
+	public function __construct(
+	    FormFactoryInterface $formFactory,
+        EntityManagerInterface $em,
+        RouterInterface $router,
+        UserPasswordEncoderInterface $passwordEncoder
+    ){
 		$this->formFactory = $formFactory;
 		$this->em = $em;
 		$this->router = $router;
@@ -131,6 +135,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator    {
 	 */
 	protected function getDefaultSuccessRedirectUrl()
 	{
-		return $this->router->generate('admin');
+		return $this->router->generate('post_index');
 	}
 }
