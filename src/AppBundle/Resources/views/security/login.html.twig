@@ -8,6 +8,14 @@
         <div class="col-md-6 mx-auto">
     <div class="panel panel-default">
     <div class="panel-body">
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
 {% if error %}
     <div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}

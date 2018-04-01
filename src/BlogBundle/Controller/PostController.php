@@ -7,10 +7,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Post controller.
- *
+ *@Security("is_granted('ROLE_ADMIN')")
  */
 class PostController extends Controller
 {
@@ -18,6 +19,7 @@ class PostController extends Controller
      * Lists all post entities.
      * @Route("/posts", name="post_index")
      * @Template("BlogBundle::post/index.html.twig", vars={"posts"})
+     *
      */
     public function indexAction()
     {

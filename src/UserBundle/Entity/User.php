@@ -13,6 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="UserBundle\Repository\UserRepository")
+ * @UniqueEntity(fields={"email"}, message="It looks like you already have an account!")
  */
 class User implements AdvancedUserInterface, Serializable
 {
@@ -33,7 +34,7 @@ class User implements AdvancedUserInterface, Serializable
     private $username;
 
 	/**
-	 * @Assert\NotBlank()
+	 * @Assert\NotBlank(groups={"Registration"})
 	 * @Assert\Length(max=4096)
 	 */
 	private $plainPassword;
@@ -46,6 +47,8 @@ class User implements AdvancedUserInterface, Serializable
     private $password;
 
 	/**
+     * @Assert\NotBlank()
+     * @Assert\Email()
 	 * @ORM\Column(name="email", type="string", length=255)
 	 */
 	private $email;
@@ -138,11 +141,16 @@ class User implements AdvancedUserInterface, Serializable
 	 */
 	public function getRoles()
 	{
-		$roles = $this->roles;
-		$roles[] = 'ROLE_USER';
+        $roles = $this->roles;
 
-		return array_unique($roles);
-	}
+        // give everyone ROLE_USER!
+        if (!in_array('ROLE_USER', $roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+        return $roles;
+
+
+    }
 
 	public function setRoles(array $roles)
 	{

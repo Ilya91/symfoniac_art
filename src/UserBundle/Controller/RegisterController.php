@@ -45,9 +45,13 @@ class RegisterController extends Controller
 			        ->getFlashBag()
 			        ->add('success', 'Welcome to the Death Star! Have a magical day!');
 
-			//$this->authenticateUser($user);
-
-			return $this->redirectToRoute('login');
+            return $this->get('security.authentication.guard_handler')
+                ->authenticateUserAndHandleSuccess(
+                    $user,
+                    $request,
+                    $this->get('app.security.login_form_authenticator'),
+                    'main'
+                );
 		}
 		return array('form' => $form->createView());
 	}

@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use UserBundle\Entity\User;
 
 class RegisterFormType extends AbstractType
 {
@@ -25,12 +26,13 @@ class RegisterFormType extends AbstractType
 			));
 	}
 
-	public function setDefaultOptions(OptionsResolver $resolver)
-	{
-		$resolver->setDefaults(array(
-			'data_class' => 'UserBundle\Entity\User',
-		));
-	}
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => User::class,
+            'validation_groups' => ['Default', 'Registration']
+        ]);
+    }
 
 	public function getName()
 	{

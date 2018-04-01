@@ -32,7 +32,10 @@ security:
                target: /
 
     access_control:
+#          role_hierarchy:
+#                  ROLE_ADMIN:       ROLE_USER
+#                  ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
         # require ROLE_ADMIN for /admin*
-#        - { path: ^/admin, roles: ROLE_ADMIN }
+        #- { path: ^/posts, roles: ROLE_USER }
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
