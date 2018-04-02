@@ -5,7 +5,3 @@ blog_post:
 blog_post_annotations:
     resource: "@BlogBundle/Controller"
     type:   annotation
-
-blog_homepage:
-    path:     /
-    defaults: { _controller: BlogBundle:Default:index }
