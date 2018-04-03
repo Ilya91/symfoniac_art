@@ -21,8 +21,18 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $fun = 'Octopuses can change the color of their body in just *three-tenths* of a second!';
-        $fun = $this->get('markdown.parser')
-            ->transform($fun);
+
+	    $cache = $this->get('doctrine_cache.providers.my_markdown_cache');
+	    $key = md5($fun);
+
+	    if ($cache->contains($key)) {
+		    $fun = $cache->fetch( $key );
+	    }else{
+		    sleep(1);
+		    $fun = $this->get('markdown.parser')
+		                       ->transform($fun);
+			$cache->save($key, $fun);
+	    }
 
         return [
             'fun' => $fun,
