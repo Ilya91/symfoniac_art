@@ -57,15 +57,23 @@ class ProductController extends Controller
         ));
     }
 
-    /**
-     * Finds and displays a product entity.
-     *
-     * @Route("/{id}", name="product_show")
-     * @Method("GET")
-     */
+	/**
+	 * Finds and displays a product entity.
+	 *
+	 * @Route("/{title}", name="product_show")
+	 * @Method("GET")
+	 * @param Product $product
+	 *
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+	 */
     public function showAction(Product $product)
     {
         $deleteForm = $this->createDeleteForm($product);
+
+	    if (!$product) {
+		    throw $this->createNotFoundException('product not found');
+	    }
 
         return $this->render('product/show.html.twig', array(
             'product' => $product,

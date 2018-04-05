@@ -35,6 +35,26 @@ class Product
      */
     private $cost;
 
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="description", type="text", nullable=true)
+	 */
+	private $description;
+
+	/**
+	 * @param string $description
+	 */
+	public function setDescription( $description ) {
+		$this->description = $description;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getDescription() {
+		return $this->description;
+	}
 
     /**
      * Get id

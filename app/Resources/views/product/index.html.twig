@@ -9,19 +9,21 @@
                 <th>Id</th>
                 <th>Title</th>
                 <th>Cost</th>
+                <th>Description</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for product in products %}
             <tr>
-                <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
+                <td><a href="{{ path('product_show', { 'title': product.title }) }}">{{ product.id }}</a></td>
                 <td>{{ product.title }}</td>
                 <td>{{ product.cost }}</td>
+                <td>{{ product.description }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('product_show', { 'id': product.id }) }}">show</a>
+                            <a href="{{ path('product_show', { 'title': product.title }) }}">show</a>
                         </li>
                         <li>
                             <a href="{{ path('product_edit', { 'id': product.id }) }}">edit</a>

@@ -2,6 +2,10 @@ app_product:
     resource: "@AppBundle/Controller/ProductController.php"
     type:     annotation
 
+app_product:
+    resource: "@AppBundle/Controller/ProductController.php"
+    type:     annotation
+
 blog:
     resource: "@BlogBundle/Resources/config/routing.yml"
     prefix:   /
