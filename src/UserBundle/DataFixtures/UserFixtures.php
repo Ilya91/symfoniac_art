@@ -24,6 +24,7 @@ class UserFixtures extends Fixture implements ContainerAwareInterface
 		$admin->setPassword($this->encodePassword($admin, 'admin'));
 		$user->setEmail('admin@admin.com');
 		$admin->setRoles(array('ROLE_ADMIN'));
+        $user->setIsActive(true);
 		$manager->persist($admin);
 		$manager->flush();
 	}
