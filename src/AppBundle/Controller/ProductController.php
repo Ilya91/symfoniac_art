@@ -24,7 +24,9 @@ class ProductController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $products = $em->getRepository('AppBundle:Product')->findAll();
+	    $cost = 60000;
+
+        $products = $em->getRepository('AppBundle:Product')->findAllByCostOrderedBySize($cost);
 
         return $this->render('product/index.html.twig', array(
             'products' => $products,

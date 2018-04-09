@@ -43,6 +43,13 @@ class Product
 	private $description;
 
 	/**
+	 * \DateTime
+	 *
+	 * @ORM\Column(name="created_at", type="datetime")
+	 */
+	private $createdAt;
+
+	/**
 	 * @param string $description
 	 */
 	public function setDescription( $description ) {

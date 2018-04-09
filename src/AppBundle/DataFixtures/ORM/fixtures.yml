@@ -3,3 +3,4 @@ AppBundle\Entity\Product:
         title: <name()>
         cost: <numberBetween(100, 100000)>
         description: <sentence()>
+        createdAt: <datetime()>
