@@ -56,6 +56,14 @@ class Post
      */
     private $updatedAt;
 
+	/*
+	 * @var int
+	 *
+	 * @ORM\ManyToOne(targetEntity="Category", inversedBy="post")
+	 * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+	 */
+	private $category_id;
+
 
     /**
      * Get id
@@ -186,5 +194,19 @@ class Post
     {
         return $this->updatedAt;
     }
+
+	/**
+	 * @return mixed
+	 */
+	public function getCategoryId() {
+		return $this->category_id;
+	}
+
+	/**
+	 * @param mixed $category
+	 */
+	public function setCategoryId($category ) {
+		$this->category_id = $category;
+	}
 }
 
