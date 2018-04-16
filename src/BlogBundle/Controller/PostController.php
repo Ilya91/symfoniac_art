@@ -2,6 +2,7 @@
 
 namespace BlogBundle\Controller;
 
+use BlogBundle\Entity\Category;
 use BlogBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,6 +28,27 @@ class PostController extends Controller
 
         $posts = $em->getRepository('BlogBundle:Post')->findAll();
 
+        $category = new Category();
+        $category->setName('Computer Peripherals');
+
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $post = new Post();
+        $post->setContent('asdf');
+        $post->setDescription('asdf');
+        $post->setTitle('title');
+        $post->setCreatedAt(new \DateTime());
+        $post->setUpdatedAt(new \DateTime());
+
+        $post->setCategory($category);
+
+        $entityManager->persist($category);
+        $entityManager->persist($post);
+        $entityManager->flush();
+
+
+
         return [
             'posts' => $posts,
         ];
@@ -42,7 +64,13 @@ class PostController extends Controller
     public function newAction(Request $request)
     {
         $post = new Post();
-        $form = $this->createForm('BlogBundle\Form\PostType', $post);
+        $categories = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BlogBundle:Category')
+            ->findAll();
+
+        $form = $this->createForm('BlogBundle\Form\PostType', $post, ['categories' => $categories]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

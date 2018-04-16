@@ -1,7 +1,7 @@
 <?php
 namespace BlogBundle\DataFixtures;
 
-use BlogBundle\Entity\Post;
+use BlogBundle\Entity\Postwe;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -12,7 +12,7 @@ class AppFixtures extends Fixture
 		// create 20 products! Bam!
 		for ($i = 0; $i < 20; $i++) {
 			$datetime = new \DateTime('now');
-			$post = new Post();
+			$post = new Postwe();
 			$post->setTitle('post '.$i);
 			$post->setDescription('description ' . $i);
 			$post->setContent('content ' . $i);
