@@ -27,28 +27,6 @@ class PostController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $posts = $em->getRepository('BlogBundle:Post')->findAll();
-
-        $category = new Category();
-        $category->setName('Computer Peripherals');
-
-
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $post = new Post();
-        $post->setContent('asdf');
-        $post->setDescription('asdf');
-        $post->setTitle('title');
-        $post->setCreatedAt(new \DateTime());
-        $post->setUpdatedAt(new \DateTime());
-
-        $post->setCategory($category);
-
-        $entityManager->persist($category);
-        $entityManager->persist($post);
-        $entityManager->flush();
-
-
-
         return [
             'posts' => $posts,
         ];
