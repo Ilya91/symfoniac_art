@@ -70,5 +70,13 @@ class Category
     {
         $this->posts = new ArrayCollection();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
 }
 

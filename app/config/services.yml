@@ -55,6 +55,19 @@ services:
                 autowire: true
                 tags:
                    - { name: doctrine.event_subscriber }
+
+    Doctrine\Common\Cache\Cache: '@doctrine_cache.providers.my_markdown_cache'
+    app.cache_transformer:
+            class: AppBundle\Service\CacheTransformer
+            arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']
+            public: true
+
+    app.custom_twig_extension:
+            class: AppBundle\Twig\CustomExtension
+            tags:
+                - { name: twig.extension }
+            #arguments: ['@app.cache_transformer']
+            autowire: true
     #UserBundle\Security\:
      #     resource: '../../src/UserBundle/Security'
       #    tags: ['user.security.login_form_authenticator']

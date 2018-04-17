@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Post
  *
  * @ORM\Table(name="post", indexes={@ORM\Index(name="fk_post_category_id", columns={"category_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="BlogBundle\Repository\PostRepository")
  */
 class Post
 {

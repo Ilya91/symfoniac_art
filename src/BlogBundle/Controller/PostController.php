@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * Post controller.
@@ -27,6 +28,16 @@ class PostController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $posts = $em->getRepository('BlogBundle:Post')->findAll();
+
+        $categories = $em->getRepository('BlogBundle:Category')->findAll();
+
+        foreach ($categories as $category){
+            foreach ($category->getPosts() as $post){
+                dump($post);
+            }
+
+        }
+
         return [
             'posts' => $posts,
         ];

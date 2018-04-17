@@ -2,7 +2,7 @@
 
 {% block body %}
         <div class="container">
-            {{ fun|raw }}
+            {{ fun|markdownify }}
             <p>
                 {{ '99999'|number_format }}
             </p>

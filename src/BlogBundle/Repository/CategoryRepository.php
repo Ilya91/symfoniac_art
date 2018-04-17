@@ -10,4 +10,12 @@ namespace BlogBundle\Repository;
  */
 class CategoryRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllPostsByCategory(){
+        return $this->createQueryBuilder('post')
+            ->andWhere('post.category_id = :id')
+            ->setParameter('id', $this->getId())
+            ->getQuery()
+            ->execute();
+
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace BlogBundle\Repository;
+use BlogBundle\Entity\Category;
 
 /**
  * PostRepository

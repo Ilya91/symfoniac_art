@@ -22,7 +22,7 @@ class DefaultController extends Controller
     {
         $fun = 'Octopuses can change the color of their body in just *three-tenths* of a second!';
 
-	    $cache = $this->get('doctrine_cache.providers.my_markdown_cache');
+	    /*$cache = $this->get('doctrine_cache.providers.my_markdown_cache');
 	    $key = md5($fun);
 
 	    if ($cache->contains($key)) {
@@ -32,7 +32,13 @@ class DefaultController extends Controller
 		    $fun = $this->get('markdown.parser')
 		                       ->transform($fun);
 			$cache->save($key, $fun);
-	    }
+	    }*/
+
+
+
+        $cacheParser = $this->get('app.cache_transformer');
+        dump($cacheParser);
+        $fun = $cacheParser->parse($fun);
 
         return [
             'fun' => $fun,
