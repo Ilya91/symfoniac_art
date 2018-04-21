@@ -20,3 +20,14 @@ user:
 
 logout:
     path: /logout
+
+movies:
+    type: rest
+    resource: RestApiBundle\Controller\MoviesController
+
+movies_post:
+    path: /movies
+    methods: [POST]
+    defaults:
+        _controller: RestApiBundle\Controller\MoviesController:postMoviesAction
+        _format: json

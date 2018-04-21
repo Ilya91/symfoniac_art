@@ -30,9 +30,9 @@ services:
     RestApiBundle\:
             resource: '../../src/RestApiBundle/*'
 
-    RestApiBundle\Controller\:
-            resource: '../../src/RestApiBundle/Controller'
-            public: true
+#    RestApiBundle\Controller\:
+#            resource: '../../src/RestApiBundle/Controller'
+#            public: true
 
     # controllers are imported separately to make sure they're public
     # and have a tag that allows actions to type-hint services
