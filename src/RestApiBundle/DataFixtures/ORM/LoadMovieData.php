@@ -1,6 +1,6 @@
 <?php
 
-namespace RestApiBundle\DataFixtures;
+namespace RestApiBundle\DataFixtures\ORM;
 
 
 use Doctrine\Bundle\FixturesBundle\Fixture;

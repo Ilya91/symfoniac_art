@@ -2,13 +2,16 @@
 
 namespace RestApiBundle\Controller;
 
+use RestApiBundle\Exception\ValidationException;
 use FOS\RestBundle\Controller\ControllerTrait;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use RestApiBundle\Entity\Movie;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 class MoviesController extends AbstractController
 {
@@ -30,7 +33,13 @@ class MoviesController extends AbstractController
      * @Rest\NoRoute()
      */
 
-    public function postMoviesAction(Movie $movie) {
+    public function postMoviesAction(
+        Movie $movie, ConstraintViolationListInterface $validationErrors
+    ) {
+        if (count($validationErrors) > 0) {
+            throw new ValidationException($validationErrors);
+        }
+
         $em = $this->getDoctrine()
             ->getManager();
         $em->persist($movie);

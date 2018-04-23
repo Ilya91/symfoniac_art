@@ -31,3 +31,14 @@ movies_post:
     defaults:
         _controller: RestApiBundle\Controller\MoviesController:postMoviesAction
         _format: json
+
+humans:
+    type: rest
+    resource: RestApiBundle\Controller\HumansController
+
+humans_post:
+    path: /humans
+    methods: [POST]
+    defaults:
+        _controller: RestApiBundle\Controller\HumansController:postHumansAction
+        _format: json
