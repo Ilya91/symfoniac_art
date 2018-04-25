@@ -68,7 +68,7 @@ class HumansController extends AbstractController
     /**
      * @Rest\View()
      */
-    public function deleteHumanAction(?Person $person)
+    public function deleteHumanAction(Person $person)
     {
         if (null === $person) {
             return $this->view(null, 404);
@@ -82,7 +82,7 @@ class HumansController extends AbstractController
     /**
      * @Rest\View()
      */
-    public function getHumanAction(?Person $person)
+    public function getHumanAction(Person $person)
     {
         if (null === $person) {
             return $this->view(null, 404);

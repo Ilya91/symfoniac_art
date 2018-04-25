@@ -39,13 +39,13 @@ class ExceptionController extends Controller
      * @param $message
      * @return View
      */
-    private function getView(?int $statusCode, $message): View
+    private function getView($statusCode, $message)
     {
         $data = [
-            'code' => $statusCode ?? 500,
+            'code' => $statusCode ? 500 : '',
             'message' => $message
         ];
 
-        return $this->view($data, $statusCode ?? 500);
+        return $this->view($data, $statusCode ? 500 : '');
     }
 }

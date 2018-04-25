@@ -2,6 +2,8 @@
 
 namespace RestApiBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -57,6 +59,16 @@ class Movie
      */
     private $description;
 
+	/**
+	 * @var ArrayCollection
+	 * @ORM\OneToMany(targetEntity="Role", mappedBy="movie", cascade={"remove"})
+	 */
+	private $roles;
+
+	public function __construct()
+	{
+		$this->roles = new ArrayCollection();
+	}
 
     /**
      * Get id
@@ -163,5 +175,13 @@ class Movie
     {
         return $this->description;
     }
+
+	/**
+	 * @return Collection
+	 */
+	public function getRoles()
+	{
+		return $this->roles;
+	}
 }
 
