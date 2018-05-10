@@ -13,10 +13,33 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
+use RestApiBundle\Entity\EntityMerger;
 
 class MoviesController extends AbstractController
 {
     use ControllerTrait;
+
+    /**
+     * @var EntityMerger
+     */
+    private $entityMerger;
+    /**
+     * @var MoviePagination
+     */
+    private $moviePagination;
+    /**
+     * @var RolePagination
+     */
+    private $rolePagination;
+
+    /**
+     * @param EntityMerger $entityMerger
+     */
+    public function __construct(
+        EntityMerger $entityMerger
+    ) {
+        $this->entityMerger = $entityMerger;
+    }
 
     /**
      * @Rest\View()
@@ -128,4 +151,47 @@ class MoviesController extends AbstractController
 
 		return $role;
 	}
+
+    /**
+     * @Rest\NoRoute()
+     * @ParamConverter("modifiedMovie", converter="fos_rest.request_body",
+     *     options={"validator" = {"groups" = {"Patch"}}}
+     * )
+     * @Security("is_authenticated()")
+     * @param Movie $movie
+     * @param Movie $modifiedMovie
+     * @param ConstraintViolationListInterface $validationErrors
+     * @return \FOS\RestBundle\View\View|Movie
+     */
+    public function patchMovieAction(
+        Movie $movie, Movie $modifiedMovie,
+        ConstraintViolationListInterface $validationErrors
+    ) {
+        if (null === $movie) {
+            return $this->view(
+                null,
+                404
+            );
+        }
+
+        if (count($validationErrors) > 0) {
+            throw new ValidationException($validationErrors);
+        }
+
+        // Merge entities
+        $this->entityMerger->merge(
+            $movie,
+            $modifiedMovie
+        );
+
+        // Persist
+        $em = $this->getDoctrine()
+            ->getManager();
+        $em->persist($movie);
+        $em->flush();
+
+        // Return
+        return $movie;
+    }
+
 }
