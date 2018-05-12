@@ -29,6 +29,8 @@ class AppKernel extends Kernel
 
 	        new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
 
+            new \Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

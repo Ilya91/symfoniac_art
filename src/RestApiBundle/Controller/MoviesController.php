@@ -15,6 +15,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use RestApiBundle\Entity\EntityMerger;
 
+/**
+ * @Security("is_anonymous() or is_authenticated()")
+ */
 class MoviesController extends AbstractController
 {
     use ControllerTrait;
