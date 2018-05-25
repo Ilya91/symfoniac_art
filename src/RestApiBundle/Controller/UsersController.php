@@ -44,8 +44,9 @@ class UsersController extends AbstractController
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param JWTEncoderInterface $jwtEncoder
      * @param EntityMerger $entityMerger
+     * @param TokenStorage $tokenStorage
      */
-    /*public function __construct(
+    public function __construct(
         UserPasswordEncoderInterface $passwordEncoder,
         JWTEncoderInterface $jwtEncoder,
         EntityMerger $entityMerger,
@@ -55,11 +56,13 @@ class UsersController extends AbstractController
         $this->jwtEncoder = $jwtEncoder;
         $this->entityMerger = $entityMerger;
         $this->tokenStorage = $tokenStorage;
-    }*/
+    }
 
     /**
      * @Rest\View()
      * @Security("is_granted('show', theUser)", message="Access denied")
+     * @param User $theUser
+     * @return User
      */
     public function getUserAction(User $theUser)
     {

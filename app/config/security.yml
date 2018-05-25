@@ -3,6 +3,7 @@
 security:
     encoders:
         UserBundle\Entity\User: bcrypt
+        RestApiBundle\Entity\User: bcrypt
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         our_database_users:

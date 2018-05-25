@@ -2,7 +2,6 @@
 
 namespace RestApiBundle\DataFixtures\ORM;
 
-
 use RestApiBundle\Entity\Person;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;

@@ -32,13 +32,16 @@ class TokensController extends AbstractController
     /**
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param JWTEncoderInterface $jwtEncoder
+     * @param TokenStorage $tokenStorage
      */
     public function __construct(
         UserPasswordEncoderInterface $passwordEncoder,
-        JWTEncoderInterface $jwtEncoder
+        JWTEncoderInterface $jwtEncoder,
+        TokenStorage $tokenStorage
     ) {
         $this->passwordEncoder = $passwordEncoder;
         $this->jwtEncoder = $jwtEncoder;
+        $this->tokenStorage = $tokenStorage;
     }
 
     /**

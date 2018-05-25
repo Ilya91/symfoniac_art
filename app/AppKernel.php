@@ -31,6 +31,8 @@ class AppKernel extends Kernel
 
             new \Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
 
+            new \Snc\RedisBundle\SncRedisBundle(),
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

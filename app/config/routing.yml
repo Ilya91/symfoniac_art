@@ -60,6 +60,21 @@ users:
     resource: RestApiBundle\Controller\UsersController
     type: rest
 
+users_post:
+        path: /users
+        methods: [POST]
+        defaults:
+            _controller: RestApiBundle\Controller\UsersController:postUserAction
+            _format: json
+
+users_patch:
+    path: /users/{theUser}
+    methods: [PATCH]
+    defaults:
+        _controller: RestApiBundle\Controller\UsersController:patchUserAction
+        _format: json
+
+
 tokens:
     resource: RestApiBundle\Controller\TokensController
     type: rest

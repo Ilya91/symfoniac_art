@@ -30,11 +30,11 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      * @param JWTEncoderInterface $jwtEncoder
      * @param TokenStorage $tokenStorage
      */
-/*    public function __construct(JWTEncoderInterface $jwtEncoder, TokenStorage $tokenStorage)
+    public function __construct(JWTEncoderInterface $jwtEncoder, TokenStorage $tokenStorage)
     {
         $this->jwtEncoder = $jwtEncoder;
         $this->tokenStorage = $tokenStorage;
-    }*/
+    }
 
     /**
      * Returns a response that directs the user to authenticate.
