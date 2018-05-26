@@ -74,6 +74,22 @@ users_patch:
         _controller: RestApiBundle\Controller\UsersController:patchUserAction
         _format: json
 
+images:
+    resource: RestApiBundle\Controller\ImagesController
+    type: rest
+
+images_post:
+    path: /images
+    methods: [POST]
+    defaults:
+        _controller: RestApiBundle\Controller\ImagesController:postImagesAction
+        _format: json
+
+images_upload_put:
+    path: /images/{image}/upload
+    methods: [PUT]
+    defaults:
+        _controller: RestApiBundle\Controller\ImagesController:putImageUploadAction
 
 tokens:
     resource: RestApiBundle\Controller\TokensController

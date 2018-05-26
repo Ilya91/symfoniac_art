@@ -3,6 +3,7 @@
 namespace RestApiBundle\Security;
 
 use Predis\Client;
+use Predis\ClientInterface;
 
 class TokenStorage
 {
@@ -15,10 +16,10 @@ class TokenStorage
     /**
      * @param Client $redisClient
      */
-    public function __construct(Client $redisClient)
+    /*public function __construct(Client $redisClient)
     {
         $this->redisClient = $redisClient;
-    }
+    }*/
 
     /**
      * @param string $username

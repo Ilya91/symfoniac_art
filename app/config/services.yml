@@ -52,10 +52,6 @@ services:
             resource: '../../src/BlogBundle/DataFixtures'
             tags: ['doctrine.fixture.orm']
 
-    UserBundle\DataFixtures\:
-                resource: '../../src/UserBundle/DataFixtures'
-                tags: ['doctrine.fixture.orm']
-
 
     app.doctrine.hash_password_listener:
                 class: UserBundle\Doctrine\HashPasswordListener
@@ -75,6 +71,7 @@ services:
                 - { name: twig.extension }
             #arguments: ['@app.cache_transformer']
             autowire: true
+
     #UserBundle\Security\:
      #     resource: '../../src/UserBundle/Security'
       #    tags: ['user.security.login_form_authenticator']
@@ -93,3 +90,17 @@ services:
     RestApiBundle\Serializer\DoctrineEntityDeserializationSubscriber:
             tags: ['jms_serializer.event_subscriber']
             public: true
+
+    #RestApiBundle\Security\TokenStorage: "@snc_redis.default"
+
+    RestApiBundle\Repository\ImageRepository:
+            factory: ['@doctrine.orm.default_entity_manager', getRepository]
+            arguments:
+                - RestApiBundle\Entity\Image
+
+    RestApiBundle\Controller\ImagesController:
+            class: RestApiBundle\Controller\ImagesController
+            arguments:
+                - '@RestApiBundle\Repository\ImageRepository'
+                - '%image_directory%'
+                - '%image_base_url%'
