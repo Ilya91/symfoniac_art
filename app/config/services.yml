@@ -104,3 +104,6 @@ services:
                 - '@RestApiBundle\Repository\ImageRepository'
                 - '%image_directory%'
                 - '%image_base_url%'
+
+    RestApiBundle\DataFixtures\ORM\Processor\UserProcessor:
+            tags: [ { name: fidry_alice_data_fixtures.processor } ]
