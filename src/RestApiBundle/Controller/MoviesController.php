@@ -2,6 +2,9 @@
 
 namespace RestApiBundle\Controller;
 
+use RestApiBundle\Resource\Filtering\Movie\MovieFilterDefinitionFactory;
+use RestApiBundle\Resource\Filtering\Role\RoleFilterDefinitionFactory;
+use RestApiBundle\Resource\Pagination\PageRequestFactory;
 use RestApiBundle\Entity\Role;
 use RestApiBundle\Exception\ValidationException;
 use FOS\RestBundle\Controller\ControllerTrait;
@@ -49,9 +52,16 @@ class MoviesController extends AbstractController
      */
     public function getMoviesAction(Request $request)
     {
-        $movies = $this->getDoctrine()->getRepository('RestApiBundle:Movie')->findAll();
+        $pageRequestFactory = new PageRequestFactory();
+        $page = $pageRequestFactory->fromRequest($request);
 
-        return $movies;
+        $movieFilterDefinitionFactory = new MovieFilterDefinitionFactory();
+        $movieFilterDefinition = $movieFilterDefinitionFactory->factory($request);
+
+        return $this->moviePagination->paginate(
+            $page,
+            $movieFilterDefinition
+        );
     }
 
     /**
@@ -109,17 +119,25 @@ class MoviesController extends AbstractController
         return $movie;
     }
 
-	/**
-	 * @Rest\View()
-	 * @param Request $request
-	 * @param Movie $movie
-	 *
-	 * @return
-	 */
-	public function getMovieRolesAction(Request $request, Movie $movie)
-	{
-		return $movie->getRoles();
-	}
+    /**
+     * @Rest\View()
+     */
+    public function getMovieRolesAction(Request $request, Movie $movie)
+    {
+        $pageRequestFactory = new PageRequestFactory();
+        $page = $pageRequestFactory->fromRequest($request);
+
+        $roleFilterDefinitionFactory = new RoleFilterDefinitionFactory();
+        $roleFilterDefinition = $roleFilterDefinitionFactory->factory(
+            $request,
+            $movie->getId()
+        );
+
+        return $this->rolePagination->paginate(
+            $page,
+            $roleFilterDefinition
+        );
+    }
 
 	/**
 	 * @Rest\View(statusCode=201)

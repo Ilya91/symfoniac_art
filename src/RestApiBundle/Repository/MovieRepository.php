@@ -10,4 +10,12 @@ namespace RestApiBundle\Repository;
  */
 class MovieRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function count()
+    {
+        $qb = $this->createQueryBuilder('m');
+
+        return $qb->select('count(m.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }
