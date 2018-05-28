@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle\Resource\Filtering\Movie;
+namespace RestApiBundle\Resource\Filtering\Movie;
 
-use AppBundle\Repository\MovieRepository;
-use AppBundle\Resource\Filtering\ResourceFilterInterface;
+use RestApiBundle\Repository\MovieRepository;
+use RestApiBundle\Resource\Filtering\ResourceFilterInterface;
 use Doctrine\ORM\QueryBuilder;
 
 class MovieResourceFilter
@@ -23,7 +23,7 @@ class MovieResourceFilter
      * @param MovieFilterDefinition $filter
      * @return QueryBuilder
      */
-    public function getResources($filter): QueryBuilder
+    public function getResources($filter)
     {
         $qb = $this->getQuery($filter);
         $qb->select('movie');
@@ -35,7 +35,7 @@ class MovieResourceFilter
      * @param MovieFilterDefinition $filter
      * @return QueryBuilder
      */
-    public function getResourceCount($filter): QueryBuilder
+    public function getResourceCount($filter)
     {
         $qb = $this->getQuery($filter);
         $qb->select('count(movie)');
@@ -47,7 +47,7 @@ class MovieResourceFilter
      * @param MovieFilterDefinition $filter
      * @return QueryBuilder
      */
-    private function getQuery(MovieFilterDefinition $filter): QueryBuilder
+    private function getQuery(MovieFilterDefinition $filter)
     {
         $qb = $this->repository->createQueryBuilder('movie');
 

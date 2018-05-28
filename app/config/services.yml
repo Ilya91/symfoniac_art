@@ -107,3 +107,35 @@ services:
 
     RestApiBundle\DataFixtures\ORM\Processor\UserProcessor:
             tags: [ { name: fidry_alice_data_fixtures.processor } ]
+
+    RestApiBundle\Repository\MovieRepository:
+            factory: ['@doctrine.orm.default_entity_manager', getRepository]
+            arguments:
+                - RestApiBundle\Entity\Movie
+
+    RestApiBundle\Repository\RoleRepository:
+            factory: ['@doctrine.orm.default_entity_manager', getRepository]
+            arguments:
+                - RestApiBundle\Entity\Role
+
+    RestApiBundle\Repository\PersonRepository:
+            factory: ['@doctrine.orm.default_entity_manager', getRepository]
+            arguments:
+                - RestApiBundle\Entity\Person
+
+        RestApiBundle\Repository\UserRepository:
+            factory: ['@doctrine.orm.default_entity_manager', getRepository]
+            arguments:
+                - RestApiBundle\Entity\User
+
+        RestApiBundle\Repository\ImageRepository:
+            factory: ['@doctrine.orm.default_entity_manager', getRepository]
+            arguments:
+                - RestApiBundle\Entity\Image
+
+        RestApiBundle\Controller\ImagesController:
+            class: RestApiBundle\Controller\ImagesController
+            arguments:
+                - '@RestApiBundle\Repository\ImageRepository'
+                - '%image_directory%'
+                - '%image_base_url%'
