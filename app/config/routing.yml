@@ -74,9 +74,9 @@ users_patch:
         _controller: RestApiBundle\Controller\UsersController:patchUserAction
         _format: json
 
-images:
-    resource: RestApiBundle\Controller\ImagesController
-    type: rest
+#images:
+#    resource: RestApiBundle\Controller\ImagesController
+#    type: rest
 
 images_post:
     path: /images

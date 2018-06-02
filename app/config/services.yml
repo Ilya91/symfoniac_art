@@ -123,17 +123,17 @@ services:
             arguments:
                 - RestApiBundle\Entity\Person
 
-        RestApiBundle\Repository\UserRepository:
+    RestApiBundle\Repository\UserRepository:
             factory: ['@doctrine.orm.default_entity_manager', getRepository]
             arguments:
                 - RestApiBundle\Entity\User
 
-        RestApiBundle\Repository\ImageRepository:
+    RestApiBundle\Repository\ImageRepository:
             factory: ['@doctrine.orm.default_entity_manager', getRepository]
             arguments:
                 - RestApiBundle\Entity\Image
 
-        RestApiBundle\Controller\ImagesController:
+    RestApiBundle\Controller\ImagesController:
             class: RestApiBundle\Controller\ImagesController
             arguments:
                 - '@RestApiBundle\Repository\ImageRepository'

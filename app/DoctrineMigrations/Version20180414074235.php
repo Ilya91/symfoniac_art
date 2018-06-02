@@ -15,7 +15,7 @@ class Version20180414074235 extends AbstractMigration
      */
     public function up(Schema $schema)
     {
-	    $this->addSql('ALTER TABLE `symfony`.`post` ADD COLUMN category_id integer NOT NULL AFTER id,
+	    $this->addSql('ALTER TABLE post ADD COLUMN category_id integer NOT NULL AFTER id,
 ADD CONSTRAINT fk_post_category_id FOREIGN KEY (category_id) REFERENCES category(id)  ON DELETE CASCADE');
     }
 
